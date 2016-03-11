@@ -26,6 +26,10 @@ a:hover {
   color: #6594e0;
 }
 
+#h1_sent {
+  line-height: 1.25em;
+}
+
 p {
   font-size: 1em;
   line-height: 1.8;
