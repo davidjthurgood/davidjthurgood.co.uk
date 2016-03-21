@@ -21,13 +21,13 @@ body {
 }
 
 a {
-	text-decoration: none;
-	color: #fff;
-	outline: none;
+  color: #F50057;
+  text-decoration: none;
 }
 
+a:focus,
 a:hover {
-	color: #ddd;
+  color: #D81B60;
 }
 
 a:link {
