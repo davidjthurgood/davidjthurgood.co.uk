@@ -17,13 +17,13 @@ h1, h2, h3 {
 }
 
 a {
-  color: #3d6dbe;
+  color: #F50057;
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: #6594e0;
+  color: #D81B60;
 }
 
 #h1_sent {
