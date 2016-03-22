@@ -3,12 +3,6 @@
 }
 
 
-@media screen and (max-width: 960px) {
-  .content { padding: 0 20px; }
-  .center { max-width: 100%; }
-  .info_2 { width: 100%; }
-}  
-
 body {
   padding-top: 7%;
   font: 100% sans-serif;
@@ -168,8 +162,6 @@ footer hr {
 }
 
 
-
-
 /* Experience */
 .experience [class*="row"] {
   border-bottom: dotted 1px #ccc;
@@ -215,3 +207,9 @@ footer hr {
 }
 
 
+@media screen and (max-width: 900px) {
+  .content { padding: 0 20px; }
+  .center { max-width: 100%; }
+  .info_2 { width: 100%; }
+  .wrapper { padding: 0 20px; }
+}  
