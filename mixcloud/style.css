@@ -4,6 +4,7 @@
 
 body {
   background: url(img/background.png);
+  -webkit-text-size-adjust: 100%
 }
 
 h1, h2, h3 {
@@ -85,6 +86,16 @@ p {
   margin: -8px 0;
 }
 
+@media screen and (max-width: 520px) {
+      .facebook_arrow {
+      position: absolute;
+      top: 50%;
+      right:25px;
+      margin: -8px 0;
+      opacity: 0.0;
+    }
+  }
+
 .text {
   display: inline-block;
   vertical-align: middle;
@@ -142,6 +153,7 @@ input {
   -webkit-appearance: none;
   -moz-appearance: none;
   border-radius: 0;
+  border: none;
 }
 
 input[type="text"] {
