@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+<!-- I built this -->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mixcloud Login</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,400italic,700italic,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<!-- Login -->
+	<div class="container">
+		
+		<div class="content">
+			<div class="logo">
+				<img src="img/logo.svg" height="43" width="281">
+			</div>
+
+			<div class="facebook">
+				<div class="facebook_logo">
+					<img src="img/facebook.svg" height="40" width="40">
+				</div>
+				<div class="text">
+					<p id="facebook">
+						Login with Facebook<br></p>
+					<p id="facebook2">
+						Or enter your email and password below
+					</p>
+				</div>
+				<div class="facebook_arrow">
+					<img src="img/arrow.svg" height="15" width="21">
+				</div>
+			</div>
+
+			<div class="or">
+				<p class="or_text">
+					Or
+				</p>
+			</div>
+
+			<form action="login.php">
+				<br>
+				<div class="input_img">
+					<img src="img/user.svg" height="20" width="20" class="input_img_div">
+					<input type="text" name="customer" value="Email Address or Username">
+				</div>
+				<br>
+				<div class="input_img">
+					<img src="img/key.svg" height="25" width="25" class="input_img_div_b">
+					<input type="text" name="password" value="Password"><br><br>
+				</div>
+				<input class="btn" type="submit" name="submit" value="Login">
+				<label class="checkbox_log">
+			    <input type="checkbox" name="remember"> Keep me logged in
+			   	</label>
+			   	<p class="signup">
+			   	No Account? Sign up
+			   	</p>
+			</form>
+
+
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>
