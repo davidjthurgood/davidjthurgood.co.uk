@@ -39,6 +39,17 @@ p {
   padding-top: 75px;
 }
 
+@media screen and (max-width: 520px) {
+    .logo {
+    width: 100%; 
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 50px;
+    padding-top: 35px;
+  }
+  }
+
 .tabs {
   width: 100%;
   overflow: hidden;
