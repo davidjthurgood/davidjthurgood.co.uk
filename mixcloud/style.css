@@ -231,5 +231,12 @@ label {
   margin-top: 20px;
 }
 
+@media screen and (max-width: 520px) {
+    .checkbox_log {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+  }
+
 
 
