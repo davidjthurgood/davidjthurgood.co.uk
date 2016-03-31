@@ -139,6 +139,33 @@ a:link {
 	line-height: 20px;
 }
 
+@media screen and (min-width: 2000px) {
+    #gallery img {
+	max-width: 80%;
+}
+
+	#agallery {
+		display: table;
+		width: 80%;
+		min-height: 80%;
+		padding-top: 50px;
+	}
+
+	#agallery div {
+		width: 47%;
+		display: inline-block;
+	}
+
+	#agallery div d {
+		width: 80%;
+		display: inline-block;
+	}
+
+	#agallery img {
+		max-width: 80%;
+	}
+  }
+
 
 .w2 {
 	display:inline-flex;
