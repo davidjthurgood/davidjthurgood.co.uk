@@ -18,6 +18,7 @@ To preview changes on mobile, use browser DevTools device emulation. The respons
 
 ### Pages
 - `index.html` — main portfolio page (the only live one)
+- `usa-trip-2026.html` — USA trip 2026 page
 - `cv.html` — outdated CV page, not linked from the main site, can be ignored
 
 ### CSS (`css/base.css`)
