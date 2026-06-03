@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>USA 2026 — New York & Santa Fe</title>
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       NYCTA GRAPHICS STANDARDS — Vignelli / Noorda, 1970
+       Helvetica Neue · No radius · MTA line colors only
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --surface2: #181818;
+      --border: #2a2a2a;
+      --text: #f2f2f2;
+      --muted: #777;
+      /* MTA Line Colors */
+      --mta-red:    #EE352E;
+      --mta-orange: #FF6319;
+      --mta-yellow: #FCCC0A;
+      --mta-blue:   #0039A6;
+      /* Site accents */
+      --accent:  #EE352E;
+      --accent2: #FF6319;
+      --tag-bg: #181818;
+      --radius: 0px;
+      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --mono: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #000;
+      border-bottom: 1px solid #fff;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      flex-wrap: wrap;
+    }
+    nav .logo {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-right: auto;
+    }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0 14px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #1c1c1c;
+      transition: color 0.15s, background 0.15s;
+    }
+    nav a:hover { color: #fff; background: #1a1a1a; }
+
+    /* HERO — BOARDING PASS */
+    .hero {
+      padding: 48px 30px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ticket {
+      background: #fff;
+      border-radius: 0;
+      overflow: visible;
+      display: flex;
+      outline: 1px solid #fff;
+      position: relative;
+    }
+
+    /* Left main section */
+    .ticket-main {
+      flex: 1;
+      padding: 0;
+      color: #1a1201;
+      min-width: 0;
+    }
+
+    .ticket-stripe { display: none; }
+
+    .ticket-body {
+      padding: 28px 32px 24px;
+    }
+
+    .ticket-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #7a6a50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ticket-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(26,18,1,0.12);
+    }
+
+    .ticket-route {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .ticket-iata {
+      font-family: var(--mono);
+      font-size: clamp(44px, 7vw, 72px);
+      font-weight: normal;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #1a1201;
+    }
+
+    .ticket-arrow-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .ticket-route-svg {
+      width: 100%;
+      max-width: 140px;
+      height: 20px;
+    }
+
+    .ticket-airline {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #555;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .ticket-city-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .ticket-city {
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .ticket-city.right { text-align: right; }
+
+    .ticket-divider {
+      height: 2px;
+      background: #000;
+      margin-bottom: 18px;
+    }
+
+    .ticket-fields {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .ticket-field label {
+      display: block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 3px;
+    }
+    .ticket-field .val {
+      font-size: 11px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .ticket-destination {
+      margin-bottom: 16px;
+    }
+    .ticket-destination h1 {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(22px, 3.8vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #000;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .ticket-destination h1 em {
+      font-style: normal;
+      color: #000;
+    }
+
+    .ticket-barcode {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 40px;
+      margin-top: 20px;
+    }
+    .ticket-barcode span {
+      background: #1a1201;
+      border-radius: 1px;
+    }
+
+    /* Perforated divider */
+    .ticket-perf {
+      width: 2px;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--bg) 0px,
+        var(--bg) 8px,
+        #f5f0e6 8px,
+        #f5f0e6 14px
+      );
+      position: relative;
+      flex-shrink: 0;
+    }
+    .ticket-perf::before,
+    .ticket-perf::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+      background: var(--bg);
+      border-radius: 50%;
+    }
+    .ticket-perf::before { top: -11px; }
+    .ticket-perf::after  { bottom: -11px; }
+
+    /* Right stub — inverted black */
+    .ticket-stub {
+      width: 160px;
+      flex-shrink: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ticket-stub-body {
+      padding: 22px 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+    }
+
+    .stub-field label {
+      display: block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 3px;
+    }
+    .stub-field .val {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+    .stub-field .val.big {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 600px) {
+      .ticket { flex-direction: column; }
+      .ticket-perf {
+        width: 100%;
+        height: 2px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--bg) 0px,
+          var(--bg) 8px,
+          #f5f0e6 8px,
+          #f5f0e6 14px
+        );
+      }
+      .ticket-perf::before { left: -11px; top: 50%; transform: translateY(-50%); }
+      .ticket-perf::after  { right: -11px; left: auto; top: 50%; transform: translateY(-50%); }
+      .ticket-stub { width: 100%; }
+      .ticket-stub-body { flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 18px 20px; }
+      .ticket-iata { font-size: 36px; }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: none;
+      padding: 56px 30px;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      text-transform: none;
+      line-height: 1;
+    }
+    h3 {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* ── FLIGHT CARDS ── */
+    .flights {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .flight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .flight-card.outbound { border-left: 4px solid var(--mta-red); }
+    .flight-card.inbound  { border-left: 4px solid var(--mta-red); }
+    .flight-card.domestic { border-left: 4px solid var(--mta-orange); }
+
+    /* Date banner */
+    .flight-date-banner {
+      padding: 8px 24px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      font-size: 10px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* Main body row */
+    .flight-body {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      gap: 16px;
+      padding: 20px 24px 0;
+    }
+
+    .flight-endpoint {
+      display: flex;
+      flex-direction: column;
+    }
+    .flight-endpoint.right { align-items: flex-end; text-align: right; }
+
+    .flight-airport {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .flight-city {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .flight-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Middle arrow column */
+    .flight-middle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+      gap: 6px;
+    }
+    .flight-arrow-svg {
+      width: 100px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .flight-middle-info {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      line-height: 2;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .flight-middle-info a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    .flight-middle-info a:hover { text-decoration: underline; }
+
+    /* Footer row with links */
+    .flight-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px 18px;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .flight-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 5px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .flight-link:hover { border-color: var(--text); background: var(--surface2); }
+    .flight-link.track { color: var(--mta-orange); border-color: var(--mta-orange); }
+    .flight-link.track:hover { background: rgba(255,99,25,0.08); }
+    .flight-link svg { width: 10px; height: 10px; }
+
+    /* Expandable flight details */
+    .flight-details {
+      display: none;
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .flight-details.open { display: block; }
+    .flight-details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 18px 28px;
+    }
+    .fdf label {
+      display: block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .fdf .val {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .fdf .val.note {
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .flight-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .flight-toggle:hover { border-color: var(--text); color: var(--text); }
+    .flight-toggle.open { border-color: var(--text); color: var(--text); }
+    .flight-footer-right { display: flex; gap: 2px; }
+
+    /* ── ACCOMMODATION ── */
+    .stays {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+    }
+    .stay-card, a.stay-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    a.stay-card:hover { border-color: var(--text); background: var(--surface2); }
+    .stay-city {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mta-red);
+      margin-bottom: 10px;
+    }
+    .stay-name {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .stay-address {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .stay-dates {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── CITY SECTIONS ── */
+    .city-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--text);
+    }
+    .city-section-header h2 { margin-bottom: 0; }
+    .city-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .places-subsections {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .places-subsections { grid-template-columns: 1fr; }
+      .flight-body { grid-template-columns: 1fr auto 1fr; gap: 8px; padding: 14px 14px 0; }
+      .flight-airport { font-size: 26px; }
+      .flight-time { font-size: 15px; margin-top: 5px; }
+      .flight-city { font-size: 10px; }
+      .flight-middle-info { font-size: 9px; }
+      .flight-arrow-svg { width: 60px; }
+      .flight-footer { padding: 10px 14px 12px; }
+      .flight-date-banner { padding: 7px 14px; }
+      .flight-link { font-size: 10px; padding: 4px 9px; }
+      h2 { font-size: 22px; }
+    }
+
+    .place-column h3 {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    .place-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .place-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 12px 14px;
+    }
+    .place-item.placeholder {
+      border-style: dashed;
+      opacity: 0.3;
+    }
+    .place-item .place-name {
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      text-transform: none;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .place-item .place-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: normal;
+      line-height: 1.65;
+      overflow: hidden;
+      max-height: 3.3em;
+      transition: max-height 0.35s ease;
+    }
+    .place-item .place-note.expanded { max-height: 600px; }
+    .place-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .place-card-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .read-more-btn {
+      background: none;
+      border: none;
+      color: var(--mta-orange);
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .read-more-btn:hover { color: var(--text); }
+    .maps-link-sm {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .maps-link-sm:hover { color: var(--mta-red); border-color: var(--mta-red); background: rgba(238,53,46,0.06); }
+    .maps-link-sm svg { width: 14px; height: 14px; }
+    .add-hint {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 10px;
+    }
+    .place-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 7px;
+    }
+    .place-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 0;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .place-badge.pick { border-color: var(--mta-red); color: var(--mta-red); }
+    .place-badge.jb   { border-color: var(--mta-yellow); color: var(--mta-yellow); }
+    .place-ratings {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 7px;
+    }
+    .place-rating {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .place-rating span { color: var(--text); font-weight: 700; }
+    .place-order {
+      background: var(--surface2);
+      border-left: 2px solid var(--mta-orange);
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 6px 0 8px;
+      line-height: 1.55;
+    }
+    .place-order strong { color: var(--mta-orange); font-weight: 700; }
+    .place-cat-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #000;
+      padding: 5px 14px;
+      margin: 16px 0 8px;
+      display: block;
+    }
+    .place-cat-label:first-child { margin-top: 0; }
+
+    /* ── PACKING ── */
+    .packing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2px;
+    }
+    .pack-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 20px 22px;
+    }
+    .pack-category h4 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mta-red);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pack-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pack-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s;
+    }
+    .pack-list li.checked {
+      opacity: 0.3;
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+    .pack-list li::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      min-width: 12px;
+      border: 2px solid var(--border);
+      border-radius: 0;
+      background: transparent;
+      display: inline-block;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .pack-list li.checked::before {
+      background: var(--mta-red);
+      border-color: var(--mta-red);
+    }
+
+    /* ── WEATHER ── */
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+    .weather-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+    .weather-city-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mta-red);
+      margin-bottom: 8px;
+    }
+    .weather-title {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .weather-temps {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .weather-temp-block label {
+      display: block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .weather-temp-block .temp {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .weather-temp-block .temp-f {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .weather-temp-block.high .temp { color: var(--mta-orange); }
+    .weather-temp-block.low  .temp { color: var(--accent2); opacity: 0.6; }
+    .weather-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .weather-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 11px;
+    }
+    .weather-row .wlabel {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .weather-row .wval {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      max-width: 55%;
+    }
+    .weather-tip {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      border-left: 2px solid var(--mta-orange);
+      padding-left: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 32px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: #000;
+      border-top: 3px solid var(--mta-red);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">USA 2026</span>
+  <a href="#flights">Flights</a>
+  <a href="#stays">Stays</a>
+  <a href="#weather">Weather</a>
+  <a href="#new-york">New York</a>
+  <a href="#santa-fe">Santa Fe</a>
+  <a href="#pack">Packing</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ticket">
+
+    <!-- MAIN SECTION -->
+    <div class="ticket-main">
+      <div class="ticket-stripe"></div>
+      <div class="ticket-body">
+
+        <div class="ticket-label">Boarding Pass</div>
+
+        <div class="ticket-route">
+          <div class="ticket-iata">LHR</div>
+          <div class="ticket-arrow-area">
+            <svg class="ticket-route-svg" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="10" x2="126" y2="10" stroke="#000" stroke-width="2"/>
+              <polyline points="120,4 132,10 120,16" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div class="ticket-airline">British Airways · BA173</div>
+          </div>
+          <div class="ticket-iata">JFK</div>
+        </div>
+
+        <div class="ticket-city-row">
+          <div class="ticket-city">London Heathrow</div>
+          <div class="ticket-city right">New York JFK</div>
+        </div>
+
+        <div class="ticket-divider"></div>
+
+        <div class="ticket-destination">
+          <h1>New York & <em>Santa Fe</em></h1>
+        </div>
+
+        <div class="ticket-fields">
+          <div class="ticket-field">
+            <label>Departs</label>
+            <div class="val">Thu 25 Jun · 11:35</div>
+          </div>
+          <div class="ticket-field">
+            <label>Arrives</label>
+            <div class="val">Thu 25 Jun · 14:25</div>
+          </div>
+          <div class="ticket-field">
+            <label>Duration</label>
+            <div class="val">13 nights</div>
+          </div>
+          <div class="ticket-field">
+            <label>Cities</label>
+            <div class="val">New York · Santa Fe · Taos</div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- PERFORATION -->
+    <div class="ticket-perf"></div>
+
+    <!-- STUB -->
+    <div class="ticket-stub">
+      <div class="ticket-stripe"></div>
+      <div class="ticket-stub-body">
+        <div class="stub-field">
+          <label>Passenger</label>
+          <div class="val">David Thurgood</div>
+        </div>
+        <div class="stub-field">
+          <label>Flight</label>
+          <div class="val big">BA173</div>
+        </div>
+        <div class="stub-field">
+          <label>Date</label>
+          <div class="val">25 JUN 2026</div>
+        </div>
+        <div class="stub-field">
+          <label>Confirmation</label>
+          <div class="val">ZUJM25</div>
+        </div>
+        <div class="stub-field">
+          <label>Return</label>
+          <div class="val">BA114<br>07 JUL 2026</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLIGHTS -->
+<section id="flights">
+  <p class="section-label">01 — Flights</p>
+  <h2>Getting There</h2>
+
+  <div class="flights">
+
+    <!-- LHR → JFK -->
+    <div class="flight-card outbound">
+      <div class="flight-date-banner">Thursday, 26 June 2026 &nbsp;·&nbsp; Outbound</div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <div class="flight-airport">LHR</div>
+          <div class="flight-city">London Heathrow</div>
+          <div class="flight-time">11:35</div>
+        </div>
+        <div class="flight-middle">
+          <svg class="flight-arrow-svg" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="2" y1="9" x2="88" y2="9" stroke="#555" stroke-width="1.5"/>
+            <polyline points="82,3 92,9 82,15" fill="none" stroke="#555" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="flight-middle-info">
+            BA173<br>
+            British Airways<br>
+            ~7h 50m
+          </div>
+        </div>
+        <div class="flight-endpoint right">
+          <div class="flight-airport">JFK</div>
+          <div class="flight-city">New York JFK</div>
+          <div class="flight-time">14:25</div>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <a class="flight-link" href="https://www.britishairways.com/travel/managebooking/public/en_gb" target="_blank" rel="noopener">
+          ZUJM25
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="flight-footer-right">
+          <button class="flight-toggle" onclick="toggleFlight(this)">Flight Details +</button>
+          <a class="flight-link track" href="https://www.flightaware.com/live/flight/BAW173" target="_blank" rel="noopener">
+            Track BA173
+            <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flight-details">
+        <div class="flight-details-grid">
+          <div class="fdf"><label>Terminal (LHR)</label><div class="val">Terminal 5</div></div>
+          <div class="fdf"><label>Terminal (JFK)</label><div class="val">Terminal 7</div></div>
+          <div class="fdf"><label>Gate</label><div class="val">TBC Day Of</div></div>
+          <div class="fdf"><label>Aircraft</label><div class="val">Boeing 777-300ER</div></div>
+          <div class="fdf"><label>Duration</label><div class="val">7h 50m</div></div>
+          <div class="fdf"><label>Meal Service</label><div class="val">Included</div></div>
+          <div class="fdf"><label>Wi-Fi</label><div class="val">Available <span class="note">(paid)</span></div></div>
+          <div class="fdf"><label>Baggage</label><div class="val">1 × 23kg checked<br>1 × cabin bag</div></div>
+          <div class="fdf"><label>Check-in Opens</label><div class="val">24hrs before</div></div>
+          <div class="fdf"><label>Check-in Closes</label><div class="val">45 min before</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JFK → ABQ -->
+    <div class="flight-card domestic">
+      <div class="flight-date-banner">Friday, 27 June 2026 &nbsp;·&nbsp; New York → New Mexico</div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <div class="flight-airport">JFK</div>
+          <div class="flight-city">New York JFK</div>
+          <div class="flight-time">19:10</div>
+        </div>
+        <div class="flight-middle">
+          <svg class="flight-arrow-svg" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="2" y1="9" x2="88" y2="9" stroke="#555" stroke-width="1.5"/>
+            <polyline points="82,3 92,9 82,15" fill="none" stroke="#555" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="flight-middle-info">
+            B6 65 · JetBlue<br>
+            ~5h 58m
+          </div>
+        </div>
+        <div class="flight-endpoint right">
+          <div class="flight-airport">ABQ</div>
+          <div class="flight-city">Albuquerque</div>
+          <div class="flight-time">22:08</div>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <a class="flight-link" href="https://www.jetblue.com/manage-trips" target="_blank" rel="noopener">
+          OTVEVX
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="flight-footer-right">
+          <button class="flight-toggle" onclick="toggleFlight(this)">Flight Details +</button>
+          <a class="flight-link track" href="https://www.flightaware.com/live/flight/JBU65" target="_blank" rel="noopener">
+            Track JBU65
+            <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flight-details">
+        <div class="flight-details-grid">
+          <div class="fdf"><label>Terminal (JFK)</label><div class="val">Terminal 5</div></div>
+          <div class="fdf"><label>Terminal (ABQ)</label><div class="val">Main Terminal</div></div>
+          <div class="fdf"><label>Gate</label><div class="val">TBC Day Of</div></div>
+          <div class="fdf"><label>Aircraft</label><div class="val">Airbus A321</div></div>
+          <div class="fdf"><label>Duration</label><div class="val">5h 58m</div></div>
+          <div class="fdf"><label>Meal Service</label><div class="val">Snacks &amp; drinks <span class="note">(complimentary)</span></div></div>
+          <div class="fdf"><label>Wi-Fi</label><div class="val">Fly-Fi <span class="note">(free)</span></div></div>
+          <div class="fdf"><label>Baggage</label><div class="val">1 × carry-on<br>1 × personal item</div></div>
+          <div class="fdf"><label>Checked Bag</label><div class="val">Fee applies <span class="note">(add via manage trips)</span></div></div>
+          <div class="fdf"><label>Check-in Opens</label><div class="val">24hrs before</div></div>
+          <div class="fdf"><label>Check-in Closes</label><div class="val">60 min before</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABQ → JFK -->
+    <div class="flight-card domestic">
+      <div class="flight-date-banner">Wednesday, 1 July 2026 &nbsp;·&nbsp; New Mexico → New York</div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <div class="flight-airport">ABQ</div>
+          <div class="flight-city">Albuquerque</div>
+          <div class="flight-time">23:10</div>
+        </div>
+        <div class="flight-middle">
+          <svg class="flight-arrow-svg" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="2" y1="9" x2="88" y2="9" stroke="#555" stroke-width="1.5"/>
+            <polyline points="82,3 92,9 82,15" fill="none" stroke="#555" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="flight-middle-info">
+            B6 66 · JetBlue<br>
+            ~4h 14m<br>
+            Arrives Thu 2 Jul
+          </div>
+        </div>
+        <div class="flight-endpoint right">
+          <div class="flight-airport">JFK</div>
+          <div class="flight-city">New York JFK</div>
+          <div class="flight-time">05:24 <small style="font-size:13px;color:var(--muted)">+1</small></div>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <a class="flight-link" href="https://www.jetblue.com/manage-trips" target="_blank" rel="noopener">
+          OTVEVX
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="flight-footer-right">
+          <button class="flight-toggle" onclick="toggleFlight(this)">Flight Details +</button>
+          <a class="flight-link track" href="https://www.flightaware.com/live/flight/JBU66" target="_blank" rel="noopener">
+            Track JBU66
+            <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flight-details">
+        <div class="flight-details-grid">
+          <div class="fdf"><label>Terminal (ABQ)</label><div class="val">Main Terminal</div></div>
+          <div class="fdf"><label>Terminal (JFK)</label><div class="val">Terminal 5</div></div>
+          <div class="fdf"><label>Gate</label><div class="val">TBC Day Of</div></div>
+          <div class="fdf"><label>Aircraft</label><div class="val">Airbus A321</div></div>
+          <div class="fdf"><label>Duration</label><div class="val">4h 14m</div></div>
+          <div class="fdf"><label>Arrives</label><div class="val">Thu 2 Jul <span class="note">(+1)</span></div></div>
+          <div class="fdf"><label>Meal Service</label><div class="val">Snacks &amp; drinks <span class="note">(complimentary)</span></div></div>
+          <div class="fdf"><label>Wi-Fi</label><div class="val">Fly-Fi <span class="note">(free)</span></div></div>
+          <div class="fdf"><label>Baggage</label><div class="val">1 × carry-on<br>1 × personal item</div></div>
+          <div class="fdf"><label>Check-in Opens</label><div class="val">24hrs before</div></div>
+          <div class="fdf"><label>Check-in Closes</label><div class="val">60 min before</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JFK → LHR -->
+    <div class="flight-card inbound">
+      <div class="flight-date-banner">Tuesday, 7 July 2026 &nbsp;·&nbsp; Homebound</div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <div class="flight-airport">JFK</div>
+          <div class="flight-city">New York JFK</div>
+          <div class="flight-time">21:40</div>
+        </div>
+        <div class="flight-middle">
+          <svg class="flight-arrow-svg" viewBox="0 0 100 18" xmlns="http://www.w3.org/2000/svg">
+            <line x1="2" y1="9" x2="88" y2="9" stroke="#555" stroke-width="1.5"/>
+            <polyline points="82,3 92,9 82,15" fill="none" stroke="#555" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="flight-middle-info">
+            BA114<br>
+            British Airways<br>
+            ~7h 10m<br>
+            Arrives Wed 8 Jul
+          </div>
+        </div>
+        <div class="flight-endpoint right">
+          <div class="flight-airport">LHR</div>
+          <div class="flight-city">London Heathrow</div>
+          <div class="flight-time">09:50 <small style="font-size:13px;color:var(--muted)">+1</small></div>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <a class="flight-link" href="https://www.britishairways.com/travel/managebooking/public/en_gb" target="_blank" rel="noopener">
+          ZUJM25
+          <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="flight-footer-right">
+          <button class="flight-toggle" onclick="toggleFlight(this)">Flight Details +</button>
+          <a class="flight-link track" href="https://www.flightaware.com/live/flight/BAW114" target="_blank" rel="noopener">
+            Track BA114
+            <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flight-details">
+        <div class="flight-details-grid">
+          <div class="fdf"><label>Terminal (JFK)</label><div class="val">Terminal 7</div></div>
+          <div class="fdf"><label>Terminal (LHR)</label><div class="val">Terminal 5</div></div>
+          <div class="fdf"><label>Gate</label><div class="val">TBC Day Of</div></div>
+          <div class="fdf"><label>Aircraft</label><div class="val">Boeing 777-200ER</div></div>
+          <div class="fdf"><label>Duration</label><div class="val">7h 10m</div></div>
+          <div class="fdf"><label>Arrives</label><div class="val">Wed 8 Jul <span class="note">(+1)</span></div></div>
+          <div class="fdf"><label>Meal Service</label><div class="val">Included</div></div>
+          <div class="fdf"><label>Wi-Fi</label><div class="val">Available <span class="note">(paid)</span></div></div>
+          <div class="fdf"><label>Baggage</label><div class="val">1 × 23kg checked<br>1 × cabin bag</div></div>
+          <div class="fdf"><label>Check-in Opens</label><div class="val">24hrs before</div></div>
+          <div class="fdf"><label>Check-in Closes</label><div class="val">45 min before</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACCOMMODATION -->
+<section id="stays">
+  <p class="section-label">02 — Accommodation</p>
+  <h2>Where We're Staying</h2>
+  <div class="stays">
+
+    <a class="stay-card" href="https://www.google.com/maps/search/?api=1&query=196+Lefferts+Place+Brooklyn+NY+11238" target="_blank" rel="noopener">
+      <div class="stay-city">New York</div>
+      <div class="stay-name">Apartment, Brooklyn</div>
+      <div class="stay-address">196 Lefferts Place<br>Brooklyn, NY 11238</div>
+      <div class="stay-dates">Thu 25 Jun – Fri 26 Jun<br>&amp; Wed 2 Jul – Tue 7 Jul</div>
+    </a>
+
+    <a class="stay-card" href="https://www.google.com/maps/search/?api=1&query=149+E+Alameda+St+Santa+Fe+NM+87501" target="_blank" rel="noopener">
+      <div class="stay-city">Santa Fe</div>
+      <div class="stay-name">149 E Alameda St</div>
+      <div class="stay-address">149 E Alameda St<br>Santa Fe, NM 87501</div>
+      <div class="stay-dates">Fri 27 Jun – Tue 1 Jul</div>
+    </a>
+
+    <a class="stay-card" href="https://www.google.com/maps/search/?api=1&query=22+Laguardia+Rd+Ranchos+De+Taos+NM+87557" target="_blank" rel="noopener">
+      <div class="stay-city">Taos</div>
+      <div class="stay-name">22 Laguardia Rd</div>
+      <div class="stay-address">22 Laguardia Rd<br>Ranchos De Taos, NM 87557</div>
+      <div class="stay-dates">Tue 30 Jun – Wed 1 Jul</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- WEATHER -->
+<section id="weather">
+  <p class="section-label">03 — Weather</p>
+  <h2>What to expect</h2>
+
+  <div class="weather-grid">
+
+    <div class="weather-card">
+      <div class="weather-city-label">New York</div>
+      <div class="weather-title">Hot &amp; humid</div>
+      <div class="weather-temps">
+        <div class="weather-temp-block high">
+          <label>Average high</label>
+          <div class="temp">29°C</div>
+          <div class="temp-f">84°F</div>
+        </div>
+        <div class="weather-temp-block low">
+          <label>Average low</label>
+          <div class="temp">21°C</div>
+          <div class="temp-f">70°F</div>
+        </div>
+      </div>
+      <div class="weather-meta">
+        <div class="weather-row"><span class="wlabel">Conditions</span><span class="wval">Sunny, humid, afternoon storms possible</span></div>
+        <div class="weather-row"><span class="wlabel">Humidity</span><span class="wval">High</span></div>
+        <div class="weather-row"><span class="wlabel">UV Index</span><span class="wval">High (7–9)</span></div>
+        <div class="weather-row"><span class="wlabel">Sunrise / Set</span><span class="wval">5:25am / 8:30pm</span></div>
+        <div class="weather-row"><span class="wlabel">Rain days</span><span class="wval">~7 days in July</span></div>
+      </div>
+      <div class="weather-tip">Light clothing throughout. Thunderstorms can roll in quickly in the afternoon — worth having a light layer. Stay hydrated.</div>
+    </div>
+
+    <div class="weather-card">
+      <div class="weather-city-label">Santa Fe</div>
+      <div class="weather-title">Hot days, cool nights</div>
+      <div class="weather-temps">
+        <div class="weather-temp-block high">
+          <label>Average high</label>
+          <div class="temp">31°C</div>
+          <div class="temp-f">88°F</div>
+        </div>
+        <div class="weather-temp-block low">
+          <label>Average low</label>
+          <div class="temp">14°C</div>
+          <div class="temp-f">57°F</div>
+        </div>
+      </div>
+      <div class="weather-meta">
+        <div class="weather-row"><span class="wlabel">Conditions</span><span class="wval">Very sunny, dry heat, PM thunderstorms</span></div>
+        <div class="weather-row"><span class="wlabel">Humidity</span><span class="wval">Low (monsoon starting)</span></div>
+        <div class="weather-row"><span class="wlabel">UV Index</span><span class="wval">Very high (10–11)</span></div>
+        <div class="weather-row"><span class="wlabel">Altitude</span><span class="wval">7,000ft / 2,134m</span></div>
+        <div class="weather-row"><span class="wlabel">Sunrise / Set</span><span class="wval">5:45am / 8:25pm</span></div>
+      </div>
+      <div class="weather-tip">The altitude makes the sun intense and dehydration sets in faster than you'd expect. High SPF is essential. Evenings drop significantly — bring a layer. Afternoon thunderstorms are brief but heavy.</div>
+    </div>
+
+    <div class="weather-card">
+      <div class="weather-city-label">Taos</div>
+      <div class="weather-title">Cooler at altitude</div>
+      <div class="weather-temps">
+        <div class="weather-temp-block high">
+          <label>Average high</label>
+          <div class="temp">27°C</div>
+          <div class="temp-f">80°F</div>
+        </div>
+        <div class="weather-temp-block low">
+          <label>Average low</label>
+          <div class="temp">11°C</div>
+          <div class="temp-f">52°F</div>
+        </div>
+      </div>
+      <div class="weather-meta">
+        <div class="weather-row"><span class="wlabel">Conditions</span><span class="wval">Sunny, dramatic afternoon storms</span></div>
+        <div class="weather-row"><span class="wlabel">Humidity</span><span class="wval">Low to moderate</span></div>
+        <div class="weather-row"><span class="wlabel">UV Index</span><span class="wval">Very high (10–11)</span></div>
+        <div class="weather-row"><span class="wlabel">Altitude</span><span class="wval">6,967ft / 2,123m</span></div>
+        <div class="weather-row"><span class="wlabel">Sunrise / Set</span><span class="wval">5:45am / 8:25pm</span></div>
+      </div>
+      <div class="weather-tip">Slightly cooler than Santa Fe. Nights can be genuinely cold — a proper jacket is needed in the evening. The dramatic skies during monsoon storms are one of the most spectacular things about northern New Mexico.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEW YORK — EXPLORE + EAT + DRINK -->
+<section id="new-york">
+  <p class="section-label">04 — New York</p>
+  <div class="city-section-header">
+    <h2>New York</h2>
+    <span class="city-tag">25–26 Jun &amp; 2–7 Jul</span>
+  </div>
+
+  <div class="places-subsections">
+
+    <div class="place-column">
+      <h3>Explore</h3>
+      <ul class="place-list">
+        <li class="place-item placeholder">
+          <div class="place-name">Add a place…</div>
+          <div class="place-note">Neighbourhood, museum, park, gallery…</div>
+        </li>
+        <li class="place-item placeholder"><div class="place-name">Add a place…</div></li>
+        <li class="place-item placeholder"><div class="place-name">Add a place…</div></li>
+      </ul>
+      <p class="add-hint">// edit to add your picks</p>
+    </div>
+
+    <div class="place-column">
+      <h3>Eat</h3>
+      <ul class="place-list">
+        <li class="place-item placeholder"><div class="place-name">Add a restaurant…</div></li>
+        <li class="place-item placeholder"><div class="place-name">Add a restaurant…</div></li>
+        <li class="place-item placeholder"><div class="place-name">Add a restaurant…</div></li>
+      </ul>
+    </div>
+
+    <div class="place-column">
+      <h3>Drink</h3>
+      <ul class="place-list">
+        <li class="place-item placeholder"><div class="place-name">Add a bar…</div></li>
+        <li class="place-item placeholder"><div class="place-name">Add a bar…</div></li>
+        <li class="place-item placeholder"><div class="place-name">Add a bar…</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SANTA FE & TAOS — EXPLORE + EAT + DRINK -->
+<section id="santa-fe">
+  <p class="section-label">05 — Santa Fe &amp; Taos</p>
+  <div class="city-section-header">
+    <h2>Santa Fe &amp; Taos</h2>
+    <span class="city-tag">27 Jun – 1 Jul</span>
+  </div>
+
+  <div class="places-subsections">
+
+    <div class="place-column">
+      <h3>Explore</h3>
+      <ul class="place-list">
+
+        <li class="place-item">
+          <div class="place-name">Meow Wolf — House of Eternal Return</div>
+          <div class="place-note">Spend a few hours exploring Meow Wolf Santa Fe's House of Eternal Return, Santa Fe's famous immersive art experience. It's worth booking tickets in advance and selecting a timed entry slot, especially during weekends and busy travel periods.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Meow+Wolf+Santa+Fe" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Saturday Morning Farmers Market</div>
+          <div class="place-note">Visit the Santa Fe Farmers Market on Saturday morning in the Railyard District. It's one of the best places to experience local New Mexico produce, food vendors, baked goods, and the atmosphere of Santa Fe's creative community. Arrive early for breakfast and to browse before the crowds build.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Santa+Fe+Farmers+Market+Railyard+District" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Bandelier National Monument</div>
+          <div class="place-note">Bandelier National Monument is one of northern New Mexico's most fascinating historical and archaeological sites. Follow the Main Loop Trail to see ancient cliff dwellings and cave-like homes carved into the soft volcanic tuff by the Ancestral Pueblo people. Ladders allow visitors to climb into several of the dwellings, while the surrounding canyon offers beautiful hiking and impressive scenery. Plan to spend at least half a day here to fully appreciate both the history and the landscape. The drive from Santa Fe to Bandelier National Monument is an attraction in itself — the route winds through the forested hills of the Pajarito Plateau, offering expansive views of mesas, canyons, and volcanic landscapes.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Bandelier+National+Monument+New+Mexico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Valles Caldera National Preserve</div>
+          <div class="place-note">Spend time exploring Valles Caldera, a vast volcanic basin created by a massive eruption over a million years ago. The preserve is known for its wide-open grasslands, mountain views, wildlife, and scenic drives. Keep an eye out for elk, especially in the early morning or evening. The landscape feels more like Montana than the desert Southwest and offers some of the most spectacular natural scenery in northern New Mexico.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Valles+Caldera+National+Preserve+New+Mexico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Walatowa Slot Canyon &amp; the Red Rocks of Jemez</div>
+          <div class="place-note">Take a day trip into the Jemez Mountains to visit Walatowa Slot Canyon, a beautiful narrow canyon carved through striking red sandstone. The short walk through the canyon feels surprisingly remote and offers a completely different landscape from the high desert around Santa Fe. Nearby, the dramatic red rock formations around Jemez Pueblo make for excellent scenery and photography.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Walatowa+Slot+Canyon+Jemez+Pueblo+New+Mexico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">The High Road to Taos</div>
+          <div class="place-note">Rather than the direct route, drive the High Road to Taos. This winding scenic road passes adobe churches, mountain villages, art studios, and incredible views of the Sangre de Cristo Mountains. Consider taking the High Road one way and the Low Road through the Rio Grande canyon back for a different perspective of northern New Mexico.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=High+Road+to+Taos+New+Mexico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">The Turquoise Trail (Santa Fe → Albuquerque)</div>
+          <div class="place-note">Take the scenic Turquoise Trail between Santa Fe and Albuquerque. The route passes through historic mining towns and some beautiful high-desert landscapes. Make a stop in Madrid, a quirky former mining town filled with galleries, shops, and cafés. While there, grab a green chile cheeseburger at the legendary Mineshaft Tavern.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Turquoise+Trail+New+Mexico+NM14" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Horseback Riding — Rio Grande Stables</div>
+          <div class="place-note">Look into a trail ride with Rio Grande Stables. Their Cebolla Mesa rides offer a chance to explore the landscapes around the Rio Grande Gorge on horseback and experience a quieter side of northern New Mexico.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Rio+Grande+Stables+New+Mexico" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="place-column">
+      <h3>Eat</h3>
+      <ul class="place-list">
+
+        <div class="place-cat-label">New Mexican Classics</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Local #1 pick</span></div>
+          <div class="place-name">La Choza</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.6</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Chile Relleno plate, Pork Adovada Burrito Grande, fish tacos, Frito Pie — all "Christmas" (red + green chile). Don't miss the mocha cake dessert.</div>
+          <div class="place-note">Voted #1 NM restaurant by Santa Fe Reporter readers. Sister to The Shed — locals consistently prefer this one for its relaxed vibe, sopaipillas, and better parking. No dinner reservations; arrive early or wait with a margarita. Closed Sundays.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=La+Choza+905+Alarid+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge jb">James Beard America's Classic</span></div>
+          <div class="place-name">The Shed</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> TripAdvisor</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Red chile enchiladas (blue corn), carne adovada, green chile stew. Note: no sopaipillas here.</div>
+          <div class="place-note">Same Carswell family as La Choza, open since 1953. Set in a stunning 1692 adobe hacienda near the Plaza — they grind red chile fresh daily on-site. More touristy than La Choza but genuinely charming. Reservations recommended for dinner.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=The+Shed+113+E+Palace+Ave+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge">Breakfast &amp; lunch only · closes 2pm</span></div>
+          <div class="place-name">Tia Sophia's</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Breakfast burrito or Huevos Rancheros — both Christmas style (red + green). A Santa Fe rite of passage.</div>
+          <div class="place-note">Hole-in-the-wall diner just off the Plaza, beloved by locals for 40+ years. Fast, friendly, no-frills. Closes at 2pm sharp — plan your morning around it. Cash-friendly.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Tia+Sophia%27s+210+W+San+Francisco+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Fine Dining &amp; Special Occasions</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge jb">James Beard Best Chef SW 2022</span></div>
+          <div class="place-name">Sazón</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.6</span> Google</span><span class="place-rating"><span>4.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Duck with mole, mole tasting flight, shrimp soup. Chef Olea specialises in complex moles — let him guide you. Ask for the mole sampler.</div>
+          <div class="place-note">Chef Fernando Olea won James Beard Best Chef Southwest in 2022. Gorgeous murals, warm atmosphere, Latin American fine dining far beyond the standard. Book well ahead. Around $60–100+ per head. One of the best meals you'll have in New Mexico.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Sazon+221+Shelby+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge jb">James Beard America's Classic 1999</span></div>
+          <div class="place-name">Café Pasqual's</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Huevos Motuleños (eggs on corn tortilla with black beans, banana, feta, peas, salsa), mole-rolled enchiladas, corn pancakes. Breakfast is legendary.</div>
+          <div class="place-note">Founded 1979, a Santa Fe icon. Colourful papel picado, folk art paintings, communal centre table. Rated #1 in Santa Fe by Tripexpert (Frommer's, Travel + Leisure, Fodor's all endorse it). Often a wait — go after 1:30pm or join the communal table. Open for all meals.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Cafe+Pasqual%27s+121+Don+Gaspar+Ave+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Paloma</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.5</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Chicken en mole, tuna tostaditos (avocado, chipotle mayo, salsa macha, serranos, crispy scallions).</div>
+          <div class="place-note">The Infatuation's pick for "a big night out with great food and drinks." Energetic, good cocktails, lively atmosphere. Great for a dinner where you want vibes as much as the food. Reservation recommended.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Paloma+Restaurant+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Steakhouse &amp; BBQ</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Fine dining</span><span class="place-badge jb">James Beard featured chef</span></div>
+          <div class="place-name">Market Steer Steakhouse</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.7</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Any prime cut + green chile risotto side (non-negotiable), bone marrow, Tex-Mex mussels to start. Try the NM cut with Crab Oscar.</div>
+          <div class="place-note">Chef Kathleen Crook — Artesia native, James Beard Taste America featured chef — puts a New Mexico spin on prime steaks. Steps from the Plaza at Hotel St. Francis. Dinner only Tue–Sat plus weekend brunch. Reservation essential. $100+ per head but worth every cent for a special occasion.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Market+Steer+Steakhouse+213+Washington+Ave+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge">Dinner only · Thu–Sat</span></div>
+          <div class="place-name">Steam &amp; Smoke Craft BBQ</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Brisket, smoked duck, green chile cornbread, ribs.</div>
+          <div class="place-note">Top-rated BBQ in Santa Fe. Run by a chef with serious technique — elevated craft BBQ with bold local flavours at the Railyard. Very limited hours (Thu–Sat evenings), newer spot. Call ahead to confirm hours before going.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Steam+and+Smoke+Craft+BBQ+1611+Alcaldesa+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Casual, Street Food &amp; Tacos</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Food truck</span><span class="place-badge jb">James Beard semifinalist</span></div>
+          <div class="place-name">El Chile Toreado</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.8</span> Google</span><span class="place-rating"><span>4.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> "Luis Mix" breakfast burrito (chorizo, bacon, Polish sausage, eggs, potatoes, green chile — massive), al pastor tacos, adobada tacos, carnitas. House-made green chile sauce is essential.</div>
+          <div class="place-note">A true Santa Fe institution. Run by Luis &amp; Berenice Medina — he's a decades-long hot dog cart legend, she has a Le Cordon Bleu degree. Paper plates, outdoor seating, a buzzer system when your food's ready. Open Mon–Sat from 7:30am, closes 2:30pm (Sat 2pm). Small card surcharge. Go before noon for best selection.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=El+Chile+Toreado+807+Early+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Tune-Up Café</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.4</span> TripAdvisor</span></div>
+          <div class="place-order"><strong>Order:</strong> Pupusas (Salvadoran cult classic), smoked duck hash, lamb barbacoa taco, mole chicken enchiladas, Huevos El Salvadoreños. Check the specials board.</div>
+          <div class="place-note">Chef Jesus Rivera trained at Café Pasqual's. Friendly, funky neighbourhood spot a little off the tourist trail — which is exactly what makes it special. Breakfast through dinner daily, backroom bar with craft beers on tap, great patio. Repeat visitors swear by it.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Tune-Up+Cafe+1115+Hickox+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Historic &amp; Casual</div>
+
+        <li class="place-item">
+          <div class="place-name">The Pink Adobe &amp; Dragon Room Bar</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.2</span> Google</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Steak Dunigan (green chile), French apple pie. Or just come for cocktails in the Dragon Room.</div>
+          <div class="place-note">Great vibe and old-Santa Fe atmosphere — the Dragon Room bar out front is a beloved local institution in its own right. The restaurant leans more on atmosphere than cutting-edge food. Come for the scene and the history, not the cuisine.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=The+Pink+Adobe+406+Old+Santa+Fe+Trail+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Plaza Café</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Green chile cheeseburger, blue plate daily specials, breakfast classics.</div>
+          <div class="place-note">A Santa Fe diner institution since 1947, right on the Plaza. Reliable comfort food, fast service, no pretension. Perfect for a casual lunch between sightseeing. Not cutting-edge, but solidly good and supremely convenient.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Plaza+Cafe+Santa+Fe+NM+Plaza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Dessert &amp; Treats</div>
+
+        <li class="place-item">
+          <div class="place-name">Kakawa Chocolate House</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.7</span> Google</span><span class="place-rating"><span>4.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Hot chocolate elixir flight, Goat Cheese &amp; Sage truffle, Red Chile Caramel, Piñon Caramel, blue corn chili brownie ice cream sundae. They even have a 1790s Jeffersonian elixir based on Thomas Jefferson's personal recipe.</div>
+          <div class="place-note">Mandatory afternoon stop. Handcrafted chocolates using organic, fair-trade, small-batch cacao. Extremely knowledgeable staff. One of the few places open until 6pm. A professional chef described it as a "bucket list" experience. Go before your flight home.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Kakawa+Chocolate+House+1050+Paseo+de+Peralta+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">On the Turquoise Trail</div>
+
+        <li class="place-item">
+          <div class="place-name">Mineshaft Tavern, Madrid</div>
+          <div class="place-order"><strong>Order:</strong> Green chile cheeseburger — the reason to stop.</div>
+          <div class="place-note">A legendary stop on the Turquoise Trail in the quirky former mining town of Madrid. Best known for its green chile cheeseburger — grab one while you're browsing the town's galleries and shops.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Mineshaft+Tavern+Madrid+New+Mexico" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="place-column">
+      <h3>Drink</h3>
+      <ul class="place-list">
+
+        <div class="place-cat-label">Rooftop &amp; Views</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Must-do sunset spot</span></div>
+          <div class="place-name">Bell Tower Bar — La Fonda on the Plaza</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Margarita at golden hour — the views are the main event.</div>
+          <div class="place-note">Head up to the Bell Tower Bar at La Fonda on the Plaza for sunset. The rooftop views over Santa Fe and the surrounding mountains are supposed to be some of the best in town, making it a perfect spot for an evening margarita. Arrive a little before sunset to get a good table. Seasonal — may close in winter months.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=La+Fonda+on+the+Plaza+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Best rooftop bar</span></div>
+          <div class="place-name">Coyote Café Rooftop Cantina</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Norteño margarita, seasonal cocktails. Good bar snacks too.</div>
+          <div class="place-note">Quintessential Santa Fe experience. Open-air rooftop above Water Street — brightly coloured tables, street-art murals, great people-watching. Buzzy, energetic, fun. Seasonal (check it's open). The ground-floor Coyote Café restaurant is a totally different, more refined experience.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Coyote+Cafe+Rooftop+Cantina+132+W+Water+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">La Posada Courtyard</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.5</span> Google</span></div>
+          <div class="place-order"><strong>Order:</strong> Margarita or wine in the landscaped courtyard garden.</div>
+          <div class="place-note">The courtyard at La Posada de Santa Fe resort is genuinely beautiful — lush gardens, relaxed atmosphere, far quieter than the rooftop bar scene. A more elegant, unhurried option for an afternoon or pre-dinner drink. Great vibe.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=La+Posada+de+Santa+Fe+330+E+Palace+Ave+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Cocktail Bars</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Yelp #1 cocktail bar</span></div>
+          <div class="place-name">Secreto Lounge</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.5</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Sage-smoked margarita, Spicy Secreto, Agave Way (green chile infused), any seasonal "garden-to-glass" cocktail. Happy hour deals available.</div>
+          <div class="place-note">Santa Fe's premier craft cocktail bar. Award-winning "garden-to-glass" philosophy — fresh local herbs, house-made syrups, NM distillery spirits. Intimate, candlelit, sophisticated. Lovely front veranda for people-watching. Sit at the bar for guaranteed good service. Also at Hotel St. Francis — easy to combine with Market Steer for a full evening.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Secreto+Lounge+Hotel+St+Francis+210+Don+Gaspar+Ave+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Milk of the Poppy</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.5</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Trust the bartender — ask for a recommendation based on your mood. Creative and inventive menu.</div>
+          <div class="place-note">Makes Yelp's top 10 cocktail bars. NYC visitors call it "hands down the best cocktails in Santa Fe." Great for a late evening when you want something more adventurous than a standard margarita. Edgy, imaginative, fun.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Milk+of+the+Poppy+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">La Plazuela / Julia / Agave — La Fonda</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span></div>
+          <div class="place-order"><strong>Order:</strong> Specialty margaritas, house cocktails, local spirits.</div>
+          <div class="place-note">Three connected bar options within or around La Fonda Hotel on the Plaza — a beautiful historic property. La Plazuela is the indoor courtyard restaurant bar with stunning architecture. Good for a pre-dinner drink in an elegant setting.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=La+Fonda+Hotel+100+E+San+Francisco+St+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Local &amp; Dive Bars</div>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Best margaritas · best value</span></div>
+          <div class="place-name">Del Charro</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> House margarita — notoriously potent, famously affordable. Bar snacks and Southwestern bites.</div>
+          <div class="place-note">True local favourite. Dark wood interior, welcoming fireplace, consistently buzzing crowd. The house margaritas are a Santa Fe legend for strength-to-price ratio. One of the top insider picks and consistently mentioned alongside Secreto as a must-do bar stop.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Del+Charro+Inn+of+the+Governors+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Yelp #1 dive bar</span></div>
+          <div class="place-name">The Matador</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Cold beer, whatever's on tap. No frills required.</div>
+          <div class="place-note">Grungy, punk, unpretentious — the antidote to Santa Fe's polished cocktail bar scene. Top-rated dive bar on Yelp. A genuine local institution for people who like their bars honest and their drinks cheap. Great for a late-night wind-down.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=The+Matador+Bar+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Evangelo's</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.2</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Classic drinks, pool table. Just hang out.</div>
+          <div class="place-note">Long-running downtown bar with a consistent local crowd. Makes Yelp's top 10 unique bars. Pool table, no pretension, good energy. A Santa Fe drinking staple that's been going for decades.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Evangelo%27s+Bar+Santa+Fe+NM+downtown" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Joe's Tequila Bar</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.3</span> Google</span><span class="place-rating"><span>3.5</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Tequila flight, house margarita, mezcal cocktail.</div>
+          <div class="place-note">Exactly what it says — a dedicated tequila bar downtown. Good selection of agave spirits, lively atmosphere, popular with a mix of tourists and locals. A solid stop if you want to explore beyond the standard margarita.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Joe%27s+Tequila+Bar+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <div class="place-cat-label">Breweries</div>
+
+        <li class="place-item">
+          <div class="place-name">Tumbleroot Brewery &amp; Distillery</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> Local craft beer or house spirits. Check their live music schedule before going.</div>
+          <div class="place-note">Lively, fun, local favourite with regular live music. Their sister venue Tumbleroot Pottery Pub (top 10 unique bars on Yelp) lets you throw clay on a pottery wheel while drinking a craft cocktail — genuinely one of the most Santa Fe things you can do.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Tumbleroot+Brewery+Distillery+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-badges"><span class="place-badge pick">Yelp top 10 unique bars</span></div>
+          <div class="place-name">Tumbleroot Pottery Pub</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span><span class="place-rating"><span>4.0</span> Yelp</span></div>
+          <div class="place-order"><strong>Order:</strong> A handmade craft cocktail while you make something on the pottery wheel.</div>
+          <div class="place-note">Top 10 unique bars on Yelp Santa Fe. Throw clay, drink cocktails, meet locals — completely unique and very on-brand for Santa Fe's artsy scene. Book pottery sessions in advance if possible. Genuinely fun for any group.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Tumbleroot+Pottery+Pub+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+        <li class="place-item">
+          <div class="place-name">Nuckolls Brewing</div>
+          <div class="place-ratings"><span class="place-rating"><span>4.4</span> Google</span></div>
+          <div class="place-order"><strong>Order:</strong> Seasonal house brews — ask what's freshest on tap.</div>
+          <div class="place-note">Solid local craft brewery. Good option if you want a more laid-back beer-focused evening without the cocktail scene energy. Welcoming taproom atmosphere.</div>
+          <div class="place-card-footer">
+            <a class="maps-link-sm" title="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query=Nuckolls+Brewing+Santa+Fe+NM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PACKING -->
+<section id="pack">
+  <p class="section-label">06 — Packing</p>
+  <h2>Packing List</h2>
+  <p style="color:var(--muted); font-size:13px; margin-bottom:28px;">Click items to check them off as you pack.</p>
+
+  <div class="packing-grid">
+
+    <div class="pack-category">
+      <h4>Documents &amp; Money</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">Passport</li>
+        <li onclick="toggle(this)">Travel insurance docs</li>
+        <li onclick="toggle(this)">Flight confirmations (ZUJM25 / OTVEVX)</li>
+        <li onclick="toggle(this)">Accommodation details</li>
+        <li onclick="toggle(this)">USD cash</li>
+        <li onclick="toggle(this)">Cards / notify bank</li>
+        <li onclick="toggle(this)">ESTA / travel authorisation</li>
+      </ul>
+    </div>
+
+    <div class="pack-category">
+      <h4>Clothing</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">T-shirts / tops</li>
+        <li onclick="toggle(this)">Lightweight trousers</li>
+        <li onclick="toggle(this)">Shorts</li>
+        <li onclick="toggle(this)">Smart outfit (evenings)</li>
+        <li onclick="toggle(this)">Underwear &amp; socks</li>
+        <li onclick="toggle(this)">Pyjamas</li>
+        <li onclick="toggle(this)">Light jacket / layer (NM evenings)</li>
+        <li onclick="toggle(this)">Swimwear</li>
+        <li onclick="toggle(this)">Comfortable walking shoes</li>
+        <li onclick="toggle(this)">Sandals</li>
+        <li onclick="toggle(this)">Trainers / sneakers</li>
+      </ul>
+    </div>
+
+    <div class="pack-category">
+      <h4>Toiletries</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">Toothbrush &amp; toothpaste</li>
+        <li onclick="toggle(this)">Deodorant</li>
+        <li onclick="toggle(this)">Shampoo &amp; conditioner</li>
+        <li onclick="toggle(this)">Moisturiser</li>
+        <li onclick="toggle(this)">SPF sunscreen (high — NM sun)</li>
+        <li onclick="toggle(this)">Lip balm with SPF</li>
+        <li onclick="toggle(this)">Razor</li>
+        <li onclick="toggle(this)">Medications / prescriptions</li>
+        <li onclick="toggle(this)">Ibuprofen / paracetamol</li>
+      </ul>
+    </div>
+
+    <div class="pack-category">
+      <h4>Tech &amp; Accessories</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">Phone &amp; charger</li>
+        <li onclick="toggle(this)">US plug adaptor</li>
+        <li onclick="toggle(this)">Portable battery pack</li>
+        <li onclick="toggle(this)">Headphones</li>
+        <li onclick="toggle(this)">Camera</li>
+        <li onclick="toggle(this)">Laptop (if needed)</li>
+        <li onclick="toggle(this)">SIM / check roaming plan</li>
+      </ul>
+    </div>
+
+    <div class="pack-category">
+      <h4>Bag Essentials</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">Sunglasses</li>
+        <li onclick="toggle(this)">Sun hat / cap</li>
+        <li onclick="toggle(this)">Water bottle (refillable)</li>
+        <li onclick="toggle(this)">Small day bag / backpack</li>
+        <li onclick="toggle(this)">Reusable tote</li>
+        <li onclick="toggle(this)">Earplugs &amp; eye mask (flights)</li>
+      </ul>
+    </div>
+
+    <div class="pack-category">
+      <h4>New Mexico Extras</h4>
+      <ul class="pack-list">
+        <li onclick="toggle(this)">Insect repellent</li>
+        <li onclick="toggle(this)">Blister plasters (hiking)</li>
+        <li onclick="toggle(this)">Sturdy walking shoes / boots</li>
+        <li onclick="toggle(this)">Light rain layer</li>
+        <li onclick="toggle(this)">Altitude notes (Santa Fe ~7,000ft)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  USA 2026 &nbsp;·&nbsp; New York &amp; Santa Fe &nbsp;·&nbsp; Jun 25 – Jul 8
+</footer>
+
+<script>
+  // Flight details toggle
+  function toggleFlight(btn) {
+    const details = btn.closest('.flight-card').querySelector('.flight-details');
+    const open = details.classList.toggle('open');
+    btn.textContent = open ? 'Flight Details −' : 'Flight Details +';
+    btn.classList.toggle('open', open);
+  }
+
+// Read-more for place notes
+  document.querySelectorAll('.place-item:not(.placeholder) .place-note').forEach(note => {
+    // Only add button if text actually overflows
+    if (note.scrollHeight > note.clientHeight + 4) {
+      const footer = note.nextElementSibling;
+      const btn = document.createElement('button');
+      btn.className = 'read-more-btn';
+      btn.textContent = 'Read more';
+      btn.addEventListener('click', () => {
+        const expanded = note.classList.toggle('expanded');
+        btn.textContent = expanded ? 'Read less' : 'Read more';
+      });
+      if (footer && footer.classList.contains('place-card-footer')) {
+        footer.prepend(btn);
+      } else {
+        const newFooter = document.createElement('div');
+        newFooter.className = 'place-card-footer';
+        newFooter.appendChild(btn);
+        note.insertAdjacentElement('afterend', newFooter);
+      }
+    }
+  });
+
+  function toggle(el) {
+    el.classList.toggle('checked');
+    const key = el.closest('.pack-category').querySelector('h4').textContent + '|' + el.textContent.trim();
+    if (el.classList.contains('checked')) {
+      localStorage.setItem(key, '1');
+    } else {
+      localStorage.removeItem(key);
+    }
+  }
+  document.querySelectorAll('.pack-list li').forEach(li => {
+    const key = li.closest('.pack-category').querySelector('h4').textContent + '|' + li.textContent.trim();
+    if (localStorage.getItem(key)) li.classList.add('checked');
+  });
+</script>
+
+</script>
+
+</body>
+</html>
