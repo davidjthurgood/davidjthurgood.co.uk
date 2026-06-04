@@ -50,11 +50,11 @@
       padding: 0 30px;
       display: flex;
       align-items: center;
-      height: 48px;
+      height: 96px;
       flex-wrap: wrap;
     }
     nav .logo {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 800;
       color: #fff;
       letter-spacing: 0.18em;
@@ -64,18 +64,61 @@
     nav a {
       color: #ccc;
       text-decoration: none;
-      font-size: 10px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0 14px;
-      height: 48px;
+      height: 96px;
       display: flex;
       align-items: center;
       border-left: 1px solid #1c1c1c;
       transition: color 0.15s, background 0.15s;
     }
     nav a:hover { color: #fff; background: #1a1a1a; }
+
+    .nav-menu-btn { display: none; }
+    .nav-links { display: flex; align-items: center; }
+
+    @media (max-width: 700px) {
+      nav {
+        height: auto;
+        padding: 0 16px;
+        flex-wrap: wrap;
+      }
+      nav .logo { height: 96px; display: flex; align-items: center; }
+      .nav-menu-btn {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        color: #ccc;
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0 14px;
+        height: 72px;
+        margin: 12px 0 12px auto;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .nav-menu-btn:hover { color: #fff; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+      }
+      nav.open .nav-links { display: flex; }
+      nav .nav-links a {
+        border-left: none;
+        border-top: 1px solid #1c1c1c;
+        padding: 0 16px;
+        height: 88px;
+        width: 100%;
+      }
+    }
 
     /* HERO — BOARDING PASS */
     .hero {
@@ -134,7 +177,7 @@
     .ticket-iata {
       font-family: var(--mono);
       font-size: clamp(44px, 7vw, 72px);
-      font-weight: normal;
+      font-weight: 900;
       letter-spacing: -0.04em;
       line-height: 1;
       color: #1a1201;
@@ -142,16 +185,32 @@
 
     .ticket-arrow-area {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 4px;
+      gap: 10px;
       flex: 1;
+      padding: 0 15%;
     }
 
-    .ticket-route-svg {
-      width: 100%;
-      max-width: 140px;
-      height: 20px;
+    .ticket-line-left,
+    .ticket-line-right {
+      flex: 1;
+      height: 1.5px;
+      background: #000;
+      min-width: 14px;
+    }
+    .ticket-line-right {
+      position: relative;
+    }
+    .ticket-line-right::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 3.5px solid transparent;
+      border-bottom: 3.5px solid transparent;
+      border-left: 6px solid #000;
     }
 
     .ticket-airline {
@@ -161,6 +220,7 @@
       color: #555;
       text-transform: uppercase;
       text-align: center;
+      white-space: nowrap;
     }
 
     .ticket-city-row {
@@ -342,7 +402,7 @@
       font-weight: 700;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      padding: 5px 10px;
+      padding: 5px 10px 5px 0;
       margin-bottom: 12px;
     }
 
@@ -933,6 +993,34 @@
       padding-left: 10px;
     }
 
+    /* ── COLLAPSIBLE SECTIONS ── */
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-toggle {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      margin-top: 6px;
+      transition: color 0.15s;
+    }
+    .section-toggle:hover { color: var(--text); }
+    .section-toggle svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    section.collapsed .section-toggle svg { transform: rotate(180deg); }
+    section.collapsed .section-body { display: none; }
+
     footer {
       text-align: center;
       padding: 28px 32px;
@@ -950,12 +1038,15 @@
 
 <nav>
   <span class="logo">USA 2026</span>
-  <a href="#flights">Flights</a>
-  <a href="#stays">Stays</a>
-  <a href="#weather">Weather</a>
-  <a href="#new-york">New York</a>
-  <a href="#santa-fe">Santa Fe</a>
-  <a href="#pack">Packing</a>
+  <button class="nav-menu-btn" onclick="toggleNav(this)">Menu</button>
+  <div class="nav-links">
+    <a href="#flights" onclick="closeNav()">Flights</a>
+    <a href="#stays" onclick="closeNav()">Stays</a>
+    <a href="#weather" onclick="closeNav()">Weather</a>
+    <a href="#new-york" onclick="closeNav()">New York</a>
+    <a href="#santa-fe" onclick="closeNav()">Santa Fe</a>
+    <a href="#pack" onclick="closeNav()">Packing</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -972,11 +1063,9 @@
         <div class="ticket-route">
           <div class="ticket-iata">LHR</div>
           <div class="ticket-arrow-area">
-            <svg class="ticket-route-svg" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="126" y2="10" stroke="#000" stroke-width="2"/>
-              <polyline points="120,4 132,10 120,16" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
-            </svg>
-            <div class="ticket-airline">British Airways · BA173</div>
+            <div class="ticket-line-left"></div>
+            <div class="ticket-airline">British Airways<br>BA173</div>
+            <div class="ticket-line-right"></div>
           </div>
           <div class="ticket-iata">JFK</div>
         </div>
@@ -1956,6 +2045,14 @@
 </footer>
 
 <script>
+  // Mobile nav toggle
+  function toggleNav(btn) {
+    btn.closest('nav').classList.toggle('open');
+  }
+  function closeNav() {
+    document.querySelector('nav').classList.remove('open');
+  }
+
   // Flight details toggle
   function toggleFlight(btn) {
     const details = btn.closest('.flight-card').querySelector('.flight-details');
@@ -1999,6 +2096,37 @@
   document.querySelectorAll('.pack-list li').forEach(li => {
     const key = li.closest('.pack-category').querySelector('h4').textContent + '|' + li.textContent.trim();
     if (localStorage.getItem(key)) li.classList.add('checked');
+  });
+
+  // Collapsible sections
+  document.querySelectorAll('section[id]').forEach(section => {
+    const label = section.querySelector(':scope > .section-label');
+    if (!label) return;
+    const headingEl = label.nextElementSibling;
+
+    const header = document.createElement('div');
+    header.className = 'section-header';
+
+    const btn = document.createElement('button');
+    btn.className = 'section-toggle';
+    btn.setAttribute('aria-label', 'Toggle section');
+    btn.innerHTML = `<svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="4,15 11,8 18,15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    const body = document.createElement('div');
+    body.className = 'section-body';
+    Array.from(section.children).slice(2).forEach(el => body.appendChild(el));
+
+    const labelWrap = document.createElement('div');
+    labelWrap.appendChild(label);
+    labelWrap.appendChild(headingEl);
+    header.appendChild(labelWrap);
+    header.appendChild(btn);
+
+    section.appendChild(header);
+    section.appendChild(body);
+
+    header.addEventListener('click', () => section.classList.toggle('collapsed'));
+    section.classList.add('collapsed');
   });
 </script>
 
