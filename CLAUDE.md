@@ -18,7 +18,8 @@ To preview changes on mobile, use browser DevTools device emulation. The respons
 
 ### Pages
 - `index.html` — main portfolio page (the only live one)
-- `usa-trip-2026.html` — USA trip 2026 page
+- `usa-trip-2026.html` — USA trip 2026 page (full trip: New York + New Mexico)
+- `santa-fe.html` — New Mexico-only subset of the trip page (Santa Fe & Taos); shares the same inline NYCTA styling, derived from `usa-trip-2026.html`
 - `cv.html` — outdated CV page, not linked from the main site, can be ignored
 
 ### CSS (`css/base.css`)
