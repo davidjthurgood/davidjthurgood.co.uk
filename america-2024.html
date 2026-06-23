@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>America 2024 — Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+}
+
+.site-title {
+  text-align: center;
+  padding: 80px 24px 80px;
+}
+
+.site-title__heading {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.site-title__sub {
+  margin-top: 10px;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: #1a1a1a;
+}
+
+.grid {
+  padding: 0 24px 120px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 24px;
+  row-gap: 24px;
+  align-items: start;
+}
+
+.grid__item--solo {
+  margin-top: 136px;
+  margin-bottom: 136px;
+}
+
+.grid__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 24px;
+    padding: 40px 24px 80px;
+  }
+  .grid__item {
+    grid-column: 1 / -1 !important;
+  }
+  .grid__item--solo {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <header class="site-title">
+    <h1 class="site-title__heading">America 2024</h1>
+    <p class="site-title__sub">New York City – Memphis – New York, Vermont, New Hampshire</p>
+  </header>
+
+  <script>
+window.IMAGE_DATA = [
+  {
+    "src": "img/america-2024/IMG_2569%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1955%20Large.jpeg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_1972%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2047%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2107%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2122%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2138%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2144%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2160%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2168%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2169%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2213%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2220%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2260%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2271%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2297%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2308%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2314%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2315%20Large.jpeg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_2323%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2400%20Large.jpeg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_2453%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2522%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2537%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_2544%20Large.jpeg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_2563%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1954%20Large.jpeg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0672.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0684.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0707.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_0733-2.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_0760.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_0767.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0772.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0775.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0781.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0824.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0830.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_0855.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0925-2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0927.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0935.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_0946.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1001.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1054.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1066.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1076.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1250-2.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_1255-2.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_1268.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1460.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1483.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1500-2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1500.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1526.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1649.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1698.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1764.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1828.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1868.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/IMG_1893.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/IMG_1944.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R1-00085-003A.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R1-00085-007A.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R1-00085-012A.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R2-00086-00XA.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R2-00086-010A.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R2-00086-013A.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R2-00086-016A.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R2-00086-018A.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R2-00086-021A.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R2-00086-022A.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R2-00086-024A.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0004.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0005.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0006.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0007.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0008.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0010.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0016.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0023.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0024.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0025.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0029.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0031.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0032.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/america-2024/R3-00087-0033.jpg",
+    "orientation": "portrait"
+  }
+];
+  </script>
+  <script>
+(function () {
+  var data = window.IMAGE_DATA;
+
+  // Row patterns: each entry is an array of gridColumn values for images in that row.
+  // A row with 1 entry = solo image; 2 entries = pair.
+  // Grid is 6 columns. Each conceptual column = 2 grid units.
+  //
+  //  | 1 | 2 | 3 | 4 | 5 | 6 |
+  //  |  col A  |  col B  |  col C  |
+
+  var PAIR_PATTERNS = [
+    ['1 / span 2', '5 / span 2'],  // flank: A + C, empty centre
+    ['1 / span 2', '3 / span 2'],  // left pair: A + B
+    ['3 / span 2', '5 / span 2'],  // right pair: B + C
+  ];
+
+  // Solo patterns — left, right, centre (in that order to avoid leading with centre)
+  var SOLO_COLS = ['1 / span 2', '5 / span 2', '3 / span 2'];
+
+  var LAND_COLS = [
+    '1 / span 4',  // land-left: A + B
+    '3 / span 4',  // land-right: B + C
+    '2 / span 4',  // land-feature: inset centred
+  ];
+
+  // Feature: wide centred single image (occupies cols 2–5)
+  var FEATURE_COL = '2 / span 4';
+  var FEATURE_INTERVAL = 6; // place a feature row every N solo portraits
+
+  var pairIdx = 0;
+  var soloIdx = 0;
+  var landIdx = 0;
+  var soloCount = 0; // counts solo (non-paired) portrait placements
+
+  var items = []; // flat list of { src, orientation, gridCol }
+
+  // First image always centred at feature width, no extra top margin (title provides spacing)
+  items.push({ src: data[0].src, orientation: data[0].orientation,
+               gridCol: FEATURE_COL, solo: false });
+
+  var i = 1;
+  while (i < data.length) {
+    var cur = data[i];
+    var nxt = data[i + 1];
+
+    if (cur.orientation === 'landscape') {
+      items.push({ src: cur.src, orientation: cur.orientation,
+                   gridCol: LAND_COLS[landIdx % LAND_COLS.length], solo: true });
+      landIdx++;
+      i++;
+
+    } else if (nxt && nxt.orientation !== 'landscape') {
+      // Two consecutive non-landscape images → pair row
+      var cols = PAIR_PATTERNS[pairIdx % PAIR_PATTERNS.length];
+      pairIdx++;
+      items.push({ src: cur.src, orientation: cur.orientation, gridCol: cols[0] });
+      items.push({ src: nxt.src, orientation: nxt.orientation, gridCol: cols[1] });
+      i += 2;
+
+    } else {
+      // Solo non-landscape image
+      soloCount++;
+      var col;
+      if (soloCount % FEATURE_INTERVAL === 0) {
+        // Feature row: wide centred image
+        col = FEATURE_COL;
+        // After a feature, advance soloIdx past centre to avoid placing the
+        // next solo image directly below the feature's footprint (cols 2–5)
+        if (SOLO_COLS[soloIdx % SOLO_COLS.length] === '3 / span 2') {
+          soloIdx++;
+        }
+      } else {
+        col = SOLO_COLS[soloIdx % SOLO_COLS.length];
+        soloIdx++;
+      }
+      items.push({ src: cur.src, orientation: cur.orientation, gridCol: col, solo: true });
+      i++;
+    }
+  }
+
+  // Render
+  var grid = document.createElement('div');
+  grid.className = 'grid';
+
+  for (var j = 0; j < items.length; j++) {
+    var item = items[j];
+    var div = document.createElement('div');
+    div.className = 'grid__item grid__item--' + item.orientation + (item.solo ? ' grid__item--solo' : '');
+    div.style.gridColumn = item.gridCol;
+
+    var img = document.createElement('img');
+    img.src = item.src;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    div.appendChild(img);
+    grid.appendChild(div);
+  }
+
+  document.body.appendChild(grid);
+}());
+  </script>
+</body>
+</html>

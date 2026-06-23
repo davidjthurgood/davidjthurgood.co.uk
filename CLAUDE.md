@@ -20,6 +20,7 @@ To preview changes on mobile, use browser DevTools device emulation. The respons
 - `index.html` — main portfolio page (the only live one)
 - `usa-trip-2026.html` — USA trip 2026 page (full trip: New York + New Mexico)
 - `santa-fe.html` — New Mexico-only subset of the trip page (Santa Fe & Taos); shares the same inline NYCTA styling, derived from `usa-trip-2026.html`
+- `america-2024.html` — self-contained photography page (a 6-column JS-built masonry grid). Images live in `img/america-2024/`; the image list + layout algorithm are inlined in `<script>` blocks. Ported from the standalone Photography-Site-1 project — to add/remove photos, edit the `window.IMAGE_DATA` array inline (each entry is `{src, orientation}`).
 - `cv.html` — outdated CV page, not linked from the main site, can be ignored
 
 ### CSS (`css/base.css`)
