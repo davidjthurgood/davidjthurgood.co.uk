@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USA 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+}
+
+.site-title {
+  text-align: center;
+  padding: 80px 24px 80px;
+}
+
+.site-title__heading {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.site-title__sub {
+  margin-top: 10px;
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: #1a1a1a;
+}
+
+.grid {
+  padding: 0 24px 120px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 24px;
+  row-gap: 24px;
+  align-items: start;
+}
+
+.grid__item--solo {
+  margin-top: 136px;
+  margin-bottom: 136px;
+}
+
+.grid__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 24px;
+    padding: 40px 24px 80px;
+  }
+  .grid__item {
+    grid-column: 1 / -1 !important;
+  }
+  .grid__item--solo {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <header class="site-title">
+    <h1 class="site-title__heading">USA 2026</h1>
+    <p class="site-title__sub">New York City – San Francisco – New Mexico – New York</p>
+  </header>
+
+  <script>
+window.IMAGE_DATA = [
+  {
+    "src": "img/usa-2026/01-trip/1_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/2_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/3_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/4_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/5_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/6_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/7_TRIP.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/01-trip/8_TRIP.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/01-trip/9_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/10_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/01-trip/11_TRIP.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/1_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/2_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/3_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/4_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/5_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/6_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/7_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/8_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/9_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/10_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/11_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/12_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/13_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/14_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/15_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/16_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/17_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/18_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/19_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/20_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/21_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/22_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/23_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/24_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/02-nyc-1/25_NYC1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/1_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/2_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/3_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/4_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/5_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/6_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/7_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/8_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/9_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/10_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/11_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/12_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/13_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/14_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/15_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/16_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/17_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/18_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/19_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/20_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/21_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/22_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/23_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/24_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/25_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/26_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/27_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/28_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/29_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/30_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/31_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/32_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/33_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/34_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/35_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/36_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/37_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/38_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/39_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/40_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/03-sf-1/41_SF1.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/1_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/2_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/3_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/4_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/5_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/6_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/7_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/8_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/9_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/10_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/11_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/12_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/13_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/14_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/15_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/16_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/17_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/18_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/19_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/20_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/21_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/04-rodeo/22_RODEO.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/1_SF2.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/2_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/3_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/4_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/5_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/6_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/7_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/8_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/9_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/10_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/11_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/12_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/13_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/14_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/15_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/16_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/17_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/18_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/19_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/20_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/21_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/22_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/23_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/05-sf-2/24_SF2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/1_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/2_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/3_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/4_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/5_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/6_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/7_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/8_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/9_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/10_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/11_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/12_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/13_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/14_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/15_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/16_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/17_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/18_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/19_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/20_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/21_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/22_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/23_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/24_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/25_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/26_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/27_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/28_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/29_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/30_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/31_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/32_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/33_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/34_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/35_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/36_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/37_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/38_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/39_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/40_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/41_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/42_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/43_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/44_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/45_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/46_BANDELIER.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/47_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/06-bandelier/48_BANDELIER.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/1_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/2_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/3_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/4_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/5_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/6_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/7_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/8_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/9_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/10_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/11_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/12_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/13_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/14_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/15_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/16_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/17_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/18_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/19_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/20_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/21_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/22_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/23_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/24_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/25_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/26_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/27_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/28_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/29_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/30_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/31_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/32_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/33_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/34_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/35_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/36_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/37_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/38_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/39_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/40_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/41_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/42_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/43_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/44_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/45_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/46_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/47_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/48_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/49_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/50_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/51_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/52_TOAS.jpg",
+    "orientation": "landscape"
+  },
+  {
+    "src": "img/usa-2026/07-taos/53_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/54_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/55_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/56_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/57_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/58_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/59_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/60_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/07-taos/61_TOAS.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/1_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/2_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/3_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/4_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/5_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/6_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/7_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/8_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/9_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/10_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/11_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/12_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/13_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/14_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/15_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/16_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/17_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/18_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/19_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/20_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/21_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/22_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/23_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/24_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/25_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/26_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/27_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/28_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/29_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/30_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/31_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/32_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/33_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/34_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/35_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/36_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/37_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/38_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/39_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/40_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/08-nyc-2/41_NYC2.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/1_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/2_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/3_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/4_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/5_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/6_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/7_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/8_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/9_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/10_UPSTATE.jpg",
+    "orientation": "portrait"
+  },
+  {
+    "src": "img/usa-2026/09-upstate/11_UPSTATE.jpg",
+    "orientation": "portrait"
+  }
+];
+  </script>
+  <script>window.HERO_SRC = 'img/usa-2026/07-taos/20_TOAS.jpg';</script>
+  <script>
+(function () {
+  var data = window.IMAGE_DATA;
+
+  // A page may nominate any image as its hero by setting window.HERO_SRC before
+  // this script. That image is pulled to the front; everything else keeps its
+  // running order and flows through the layout below as normal. Without it, the
+  // hero is simply the first image in the data.
+  if (window.HERO_SRC) {
+    var heroIdx = -1;
+    for (var h = 0; h < data.length; h++) {
+      if (data[h].src === window.HERO_SRC) { heroIdx = h; break; }
+    }
+    if (heroIdx > 0) {
+      data = data.slice();
+      data.unshift(data.splice(heroIdx, 1)[0]);
+    } else if (heroIdx === -1) {
+      console.warn('HERO_SRC not found in IMAGE_DATA: ' + window.HERO_SRC);
+    }
+  }
+
+  // Row patterns: each entry is an array of gridColumn values for images in that row.
+  // A row with 1 entry = solo image; 2 entries = pair.
+  // Grid is 6 columns. Each conceptual column = 2 grid units.
+  //
+  //  | 1 | 2 | 3 | 4 | 5 | 6 |
+  //  |  col A  |  col B  |  col C  |
+
+  var PAIR_PATTERNS = [
+    ['1 / span 2', '5 / span 2'],  // flank: A + C, empty centre
+    ['1 / span 2', '3 / span 2'],  // left pair: A + B
+    ['3 / span 2', '5 / span 2'],  // right pair: B + C
+  ];
+
+  // Solo patterns — left, right, centre (in that order to avoid leading with centre)
+  var SOLO_COLS = ['1 / span 2', '5 / span 2', '3 / span 2'];
+
+  var LAND_COLS = [
+    '1 / span 4',  // land-left: A + B
+    '3 / span 4',  // land-right: B + C
+    '2 / span 4',  // land-feature: inset centred
+  ];
+
+  // Feature: wide centred single image (occupies cols 2–5)
+  var FEATURE_COL = '2 / span 4';
+  var FEATURE_INTERVAL = 6; // place a feature row every N solo portraits
+
+  var pairIdx = 0;
+  var soloIdx = 0;
+  var landIdx = 0;
+  var soloCount = 0; // counts solo (non-paired) portrait placements
+
+  var items = []; // flat list of { src, orientation, gridCol }
+
+  // First image always centred at feature width, no extra top margin (title provides spacing)
+  items.push({ src: data[0].src, orientation: data[0].orientation,
+               gridCol: FEATURE_COL, solo: false });
+
+  var i = 1;
+  while (i < data.length) {
+    var cur = data[i];
+    var nxt = data[i + 1];
+
+    if (cur.orientation === 'landscape') {
+      items.push({ src: cur.src, orientation: cur.orientation,
+                   gridCol: LAND_COLS[landIdx % LAND_COLS.length], solo: true });
+      landIdx++;
+      i++;
+
+    } else if (nxt && nxt.orientation !== 'landscape') {
+      // Two consecutive non-landscape images → pair row
+      var cols = PAIR_PATTERNS[pairIdx % PAIR_PATTERNS.length];
+      pairIdx++;
+      items.push({ src: cur.src, orientation: cur.orientation, gridCol: cols[0] });
+      items.push({ src: nxt.src, orientation: nxt.orientation, gridCol: cols[1] });
+      i += 2;
+
+    } else {
+      // Solo non-landscape image
+      soloCount++;
+      var col;
+      if (soloCount % FEATURE_INTERVAL === 0) {
+        // Feature row: wide centred image
+        col = FEATURE_COL;
+        // After a feature, advance soloIdx past centre to avoid placing the
+        // next solo image directly below the feature's footprint (cols 2–5)
+        if (SOLO_COLS[soloIdx % SOLO_COLS.length] === '3 / span 2') {
+          soloIdx++;
+        }
+      } else {
+        col = SOLO_COLS[soloIdx % SOLO_COLS.length];
+        soloIdx++;
+      }
+      items.push({ src: cur.src, orientation: cur.orientation, gridCol: col, solo: true });
+      i++;
+    }
+  }
+
+  // Render
+  var grid = document.createElement('div');
+  grid.className = 'grid';
+
+  for (var j = 0; j < items.length; j++) {
+    var item = items[j];
+    var div = document.createElement('div');
+    div.className = 'grid__item grid__item--' + item.orientation + (item.solo ? ' grid__item--solo' : '');
+    div.style.gridColumn = item.gridCol;
+
+    var img = document.createElement('img');
+    img.src = item.src;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    div.appendChild(img);
+    grid.appendChild(div);
+  }
+
+  document.body.appendChild(grid);
+}());
+  </script>
+</body>
+</html>
